@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Photo Card Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Professional Photo Card Generator</h1>
+        </header>
+
+        <div class="main-content">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <!-- Uploads Section -->
+                <div class="panel-section collapsible">
+                    <h2 class="section-header" onclick="toggleSection(this)">
+                        <span>📁 Uploads</span>
+                        <span class="toggle-icon">▼</span>
+                    </h2>
+                    <div class="section-content">
+                        <div class="upload-grid">
+                            <div class="upload-item">
+                                <label>Background</label>
+                                <div class="upload-area compact" id="backgroundUploadArea">
+                                    <input type="file" id="backgroundInput" accept="image/*" hidden>
+                                    <div class="upload-placeholder">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                            <polyline points="21 15 16 10 5 21"></polyline>
+                                        </svg>
+                                        <span>Upload</span>
+                                    </div>
+                                    <img id="backgroundPreview" class="photo-preview" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="upload-item">
+                                <label>Student Photo</label>
+                                <div class="upload-area compact" id="uploadArea">
+                                    <input type="file" id="photoInput" accept="image/*" hidden>
+                                    <div class="upload-placeholder">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="17 8 12 3 7 8"></polyline>
+                                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                                        </svg>
+                                        <span>Upload</span>
+                                    </div>
+                                    <img id="photoPreview" class="photo-preview" style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Inputs Section -->
+                <div class="panel-section collapsible">
+                    <h2 class="section-header" onclick="toggleSection(this)">
+                        <span>✏️ Text Information</span>
+                        <span class="toggle-icon">▼</span>
+                    </h2>
+                    <div class="section-content">
+                        <div class="form-grid">
+                            <div class="form-group compact">
+                                <label for="participantName">Name</label>
+                                <input type="text" id="participantName" placeholder="Full name">
+                            </div>
+                            <div class="form-group compact">
+                                <label for="participantClass">Class</label>
+                                <input type="text" id="participantClass" placeholder="Class- 9">
+                            </div>
+                            <div class="form-group compact">
+                                <label for="schoolName">School</label>
+                                <input type="text" id="schoolName" placeholder="School name">
+                            </div>
+                            <div class="form-group compact">
+                                <label for="mottoText">Motto</label>
+                                <input type="text" id="mottoText" placeholder="Motto text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Styling Section -->
+                <div class="panel-section collapsible">
+                    <h2 class="section-header" onclick="toggleSection(this)">
+                        <span>🎨 Text Styling</span>
+                        <span class="toggle-icon">▼</span>
+                    </h2>
+                    <div class="section-content">
+                        <div class="text-styling-grid">
+                            <!-- Name -->
+                            <div class="text-item">
+                                <label>Name</label>
+                                <div class="control-row">
+                                    <input type="range" id="nameFontSize" min="20" max="200" value="48" class="compact-range">
+                                    <span class="range-value" id="nameFontSizeValue">48px</span>
+                                    <input type="color" id="nameColor" value="#ffffff" class="compact-color">
+                                </div>
+                                <div class="control-row">
+                                    <label class="small-label">Gap:</label>
+                                    <input type="range" id="nameGap" min="0" max="100" value="50" class="compact-range">
+                                    <span class="range-value" id="nameGapValue">50px</span>
+                                </div>
+                            </div>
+                            <!-- Class -->
+                            <div class="text-item">
+                                <label>Class</label>
+                                <div class="control-row">
+                                    <input type="range" id="classFontSize" min="15" max="150" value="32" class="compact-range">
+                                    <span class="range-value" id="classFontSizeValue">32px</span>
+                                    <input type="color" id="classColor" value="#ffffff" class="compact-color">
+                                </div>
+                                <div class="control-row">
+                                    <label class="small-label">Gap:</label>
+                                    <input type="range" id="classGap" min="0" max="100" value="45" class="compact-range">
+                                    <span class="range-value" id="classGapValue">45px</span>
+                                </div>
+                            </div>
+                            <!-- School -->
+                            <div class="text-item">
+                                <label>School</label>
+                                <div class="control-row">
+                                    <input type="range" id="schoolFontSize" min="15" max="150" value="32" class="compact-range">
+                                    <span class="range-value" id="schoolFontSizeValue">32px</span>
+                                    <input type="color" id="schoolColor" value="#ffffff" class="compact-color">
+                                </div>
+                                <div class="control-row">
+                                    <label class="small-label">Gap:</label>
+                                    <input type="range" id="schoolGap" min="0" max="100" value="60" class="compact-range">
+                                    <span class="range-value" id="schoolGapValue">60px</span>
+                                </div>
+                            </div>
+                            <!-- Motto -->
+                            <div class="text-item">
+                                <label>Motto</label>
+                                <div class="control-row">
+                                    <input type="range" id="mottoFontSize" min="15" max="150" value="36" class="compact-range">
+                                    <span class="range-value" id="mottoFontSizeValue">36px</span>
+                                    <input type="color" id="mottoColor" value="#ffffff" class="compact-color">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Position & Layout Section -->
+                <div class="panel-section collapsible">
+                    <h2 class="section-header" onclick="toggleSection(this)">
+                        <span>📍 Position & Layout</span>
+                        <span class="toggle-icon">▼</span>
+                    </h2>
+                    <div class="section-content">
+                        <div class="position-grid">
+                            <div class="position-group">
+                                <label>Text Position</label>
+                                <div class="control-row">
+                                    <span class="axis-label">X:</span>
+                                    <input type="range" id="textPositionX" min="0" max="100" value="10" class="compact-range">
+                                    <span class="range-value" id="textPositionXValue">10%</span>
+                                </div>
+                                <div class="control-row">
+                                    <span class="axis-label">Y:</span>
+                                    <input type="range" id="textPositionY" min="0" max="100" value="25" class="compact-range">
+                                    <span class="range-value" id="textPositionYValue">25%</span>
+                                </div>
+                                <button class="btn btn-secondary compact-btn" id="toggleDragBtn">Enable Drag Mode</button>
+                            </div>
+                            <div class="position-group">
+                                <label>Photo Position</label>
+                                <div class="control-row">
+                                    <span class="axis-label">Size:</span>
+                                    <input type="range" id="photoSize" min="20" max="400" value="100" step="5" class="compact-range">
+                                    <span class="range-value" id="photoSizeValue">100%</span>
+                                </div>
+                                <div class="control-row">
+                                    <span class="axis-label">X:</span>
+                                    <input type="range" id="photoPositionX" min="0" max="100" value="65" class="compact-range">
+                                    <span class="range-value" id="photoPositionXValue">65%</span>
+                                </div>
+                                <div class="control-row">
+                                    <span class="axis-label">Y:</span>
+                                    <input type="range" id="photoPositionY" min="0" max="100" value="40" class="compact-range">
+                                    <span class="range-value" id="photoPositionYValue">40%</span>
+                                </div>
+                                <div class="control-row" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <label class="small-label">Border:</label>
+                                    <input type="checkbox" id="photoBorderEnabled" checked style="width: auto; margin-right: 8px;">
+                                    <label for="photoBorderEnabled" style="margin: 0; font-size: 0.85em;">Show</label>
+                                    <input type="color" id="photoBorderColor" value="#d4af37" class="compact-color" style="margin-left: auto;">
+                                </div>
+                                <div class="control-row">
+                                    <span class="axis-label">Width:</span>
+                                    <input type="range" id="photoBorderWidth" min="0" max="20" value="4" class="compact-range">
+                                    <span class="range-value" id="photoBorderWidthValue">4px</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions Section -->
+                <div class="panel-section collapsible">
+                    <h2 class="section-header" onclick="toggleSection(this)">
+                        <span>⚡ Actions</span>
+                        <span class="toggle-icon">▼</span>
+                    </h2>
+                    <div class="section-content">
+                        <div class="action-grid">
+                            <button class="btn btn-primary" id="downloadBtn" disabled>💾 Download</button>
+                            <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
+                            <button class="btn btn-secondary" id="saveSettingsBtn">💾 Save</button>
+                            <button class="btn btn-secondary" id="loadSettingsBtn">📂 Load</button>
+                            <button class="btn btn-secondary" id="exportSettingsBtn">📤 Export</button>
+                            <input type="file" id="importSettingsInput" accept=".json" hidden>
+                            <button class="btn btn-secondary" id="importSettingsBtn">📥 Import</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Canvas -->
+            <div class="preview-section">
+                <h2>Preview</h2>
+                <div class="canvas-container">
+                    <canvas id="certificateCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            const content = section.querySelector('.section-content');
+            const icon = header.querySelector('.toggle-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.textContent = '▼';
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '▶';
+            }
+        }
+        
+        // Expand all sections by default
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.section-content').forEach(content => {
+                content.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

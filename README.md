@@ -95,7 +95,7 @@ open index.html
 MIT License
 
 ## 🧑‍💻 Author
-**Shahid Hossain (Zahid)**  
+**Zahid Hasan (Zahid)**  
 Web Developer | MERN | Laravel | Next.js  
 Bangladesh
 
